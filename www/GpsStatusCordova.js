@@ -2,8 +2,7 @@
  * A Cordova plugin for listening a GPS status
  */
 
-var exec = cordova.require('cordova/exec'),
-    channel = cordova.require('cordova/channel');
+var exec = cordova.require('cordova/exec');
 
 function GpsStatusCordova() {
     this.isStarted = false

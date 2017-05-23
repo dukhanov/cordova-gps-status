@@ -124,18 +124,14 @@ public class GpsStatusCordova extends CordovaPlugin {
         return new GpsStatus.Listener() {
             @Override
             public void onGpsStatusChanged(int event) {
-//                GPS_EVENT_FIRST_FIX = 3;
-//                GPS_EVENT_SATELLITE_STATUS = 4;
-//                GPS_EVENT_STARTED = 1;
-//                GPS_EVENT_STOPPED = 2;
-                Log.d(TAG, "onGpsStatusChanged" + event);
+                Log.d(TAG, "onGpsStatusChanged " + event);
 
                 if (mLocationManager != null && onGpsStatusChangedCallbacks != null && !onGpsStatusChangedCallbacks.isEmpty()) {
                     PluginResult result;
                     if (ActivityCompat.checkSelfPermission(cordova.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         result = new PluginResult(PluginResult.Status.ERROR, ACCESS_FINE_LOCATION_IS_NOT_GRANTED);
                     } else {
-                        JSONObject gpsStatusJson = gpsStatusToJSON(mLocationManager.getGpsStatus(null));
+                        JSONObject gpsStatusJson = gpsStatusToJSON(mLocationManager.getGpsStatus(null), event);
                         result = new PluginResult(PluginResult.Status.OK, gpsStatusJson);
                     }
                     result.setKeepCallback(true);
@@ -177,11 +173,12 @@ public class GpsStatusCordova extends CordovaPlugin {
      * @param gpsStatus Send a GpsStatus whenever the GPS fires
      * @return JSON representation of the satellite data
      */
-    private static JSONObject gpsStatusToJSON(GpsStatus gpsStatus){
+    private static JSONObject gpsStatusToJSON(GpsStatus gpsStatus, int gpsEvent){
         final JSONObject json = new JSONObject();
 
         try {
             json.put("timestamp", Calendar.getInstance().getTimeInMillis());
+            json.put("gpsEvent", gpsEvent);
             JSONArray satellites = new JSONArray();
             if(gpsStatus.getSatellites() != null) {
                 final int timeToFirstFix = gpsStatus.getTimeToFirstFix();

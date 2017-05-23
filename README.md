@@ -38,8 +38,14 @@ function errorStart(message) {
 }
 
 function onGpsStatusChanged(result) {
-    // (Date) time of the event
+    // (timestamp milliseconds) time of the event
     console.log(result.timestamp);
+    // (Number) gps event type
+    // GPS_EVENT_FIRST_FIX = 3 - Event sent when the GPS system has received its first fix since starting.
+    // GPS_EVENT_SATELLITE_STATUS = 4 - Event sent periodically to report GPS satellite status.
+    // GPS_EVENT_STARTED = 1 - Event sent when the GPS system has started.
+    // GPS_EVENT_STOPPED = 2 - Event sent when the GPS system has stopped.
+    console.log(result.gpsEvent);
     // (Number) the time required to receive the first fix since the most recent restart of the GPS engine
     console.log(result.timeToFirstFix);
     // (Array) list of satellites
