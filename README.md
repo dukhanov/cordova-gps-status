@@ -14,16 +14,16 @@ It has been currently stripped to the minimum needed from a Javascript app.
 
 The following functions are available:
 
-* GpsStatus.start(success, error). Start GPS status listener
+* `GpsStatus.start(success, error)`. Start GPS status listener
   * success: called on function success
   * error: called on function error
-* GpsStatus.stop(success, error). Remove GPS status listeners
+* `GpsStatus.stop(success, error)`. Remove GPS status listeners
   * success: called on function success
   * error: called on function error
-* GpsStatus.addListener(listener, error). Add callback to GPS status listener
+* `GpsStatus.addListener(listener, error)`. Add callback to GPS status listener
   * listener: function which will be called after GPS status will change
   * error: called on function error
-* GpsStatus.removeListeners(success, error). Remove all listeners from GPS status listener
+* `GpsStatus.removeListeners(success, error)`. Remove all listeners from GPS status listener
   * success: called on function success
   * error: called on function error
 
