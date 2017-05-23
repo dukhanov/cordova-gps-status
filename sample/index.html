@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <style>
+
+	</style>
+    <title>Hello GPS</title>
+</head>
+<body>
+    <div class="app">
+        <div>
+            <button id="btnStart">Start GPS status listener</button>
+			<button id="btnStop">Stop GPS status listener</button>
+        </div>
+        <br/>
+        <div id="gpsStatuses"></div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+		var app = {
+			// Application Constructor
+			initialize: function() {
+				this.bindEvents();
+			},
+			// Bind Event Listeners
+			bindEvents: function() {
+				document.getElementById('btnStart').addEventListener('click', this.startListening);
+				document.getElementById('btnStop').addEventListener('click', this.stopListening);
+			},
+			startListening: function() {
+				GpsStatusCordova.addListener(function(gpsStatus){
+					document.getElementById('gpsStatuses').innerHTML += gpsStatus;
+					console.log(gpsStatus);
+				}, function(error) {
+					console.error(error)
+				})
+			},
+			stopListening: function() {
+				GpsStatusCordova.removeListeners(function(){
+					console.log('listeners were removed');
+				}, function(error) {
+					console.error(error)
+				})
+			},
+		};
+
+		app.initialize();
+	</script>
+</body>
+</html>

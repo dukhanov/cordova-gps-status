@@ -1,0 +1,24 @@
+{
+  "name": "cordova-gps-status",
+  "version": "0.0.1",
+  "description": "A Cordova plugin for listening a GPS status",
+  "cordova": {
+    "id": "cordova-gps-status",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/dukhanov/cordova-gps-status"
+  },
+  "keywords": [
+    "cordova",
+    "GPS status",
+    "GPS satellite info",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "dukhanov",
+  "license": "Apache 2.0"
+}
